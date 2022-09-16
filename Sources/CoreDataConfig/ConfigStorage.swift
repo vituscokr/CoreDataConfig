@@ -33,7 +33,7 @@ public class ConfigStorage: NSObject, ObservableObject {
         } catch {
         }
     }
-    func read(key: ConfigKey ) -> String {
+    public func read(key: ConfigKey ) -> String {
         let objects = fetchController.fetchedObjects?.filter {
             $0.key == key.rawValue
         }
@@ -42,7 +42,7 @@ public class ConfigStorage: NSObject, ObservableObject {
         }
         return object.wrappedValue
     }
-    func add(key: ConfigKey, value: String ) {
+    public func add(key: ConfigKey, value: String ) {
         let viewContext = fetchController.managedObjectContext
         let config = Config(context: viewContext)
         config.key = key.rawValue
@@ -53,7 +53,7 @@ public class ConfigStorage: NSObject, ObservableObject {
             print(error.localizedDescription)
         }
     }
-    func upate(key: ConfigKey, value: String) {
+    public func upate(key: ConfigKey, value: String) {
         let viewContext = fetchController.managedObjectContext
         let objects = fetchController.fetchedObjects?.filter {
             $0.key == key.rawValue
@@ -69,7 +69,7 @@ public class ConfigStorage: NSObject, ObservableObject {
             print(error.localizedDescription)
         }
     }
-    func delete(key: ConfigKey ) {
+    public func delete(key: ConfigKey ) {
         let viewContext = fetchController.managedObjectContext
         let objects = fetchController.fetchedObjects?.filter {
             $0.key == key.rawValue
