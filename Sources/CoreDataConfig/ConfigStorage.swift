@@ -7,8 +7,7 @@
 import Foundation
 import CoreData
 import Combine
-
-@available(macOS 10.15, *)
+@available(macOS 10.15, iOS 13.0, *)
 public class ConfigStorage: NSObject, ObservableObject {
     public var items = CurrentValueSubject<[Config], Never>([])
     public static let shared: ConfigStorage = ConfigStorage()
@@ -86,7 +85,7 @@ public class ConfigStorage: NSObject, ObservableObject {
         }
     }
 }
-@available(macOS 10.15, *)
+@available(macOS 10.15, iOS 13.0, *)
 extension ConfigStorage: NSFetchedResultsControllerDelegate {
     public func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         guard let items = controller.fetchedObjects as? [Config] else {
