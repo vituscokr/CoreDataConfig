@@ -23,7 +23,9 @@ public class CoreDataManager: NSPersistentContainer {
     
     private func initialize() {
         self.loadPersistentStores { (_, error) in
-            fatalError("Unresolved error (\(error?.localizedDescription ?? "ERROR!!")")
+            if error != nil {
+                fatalError("Unresolved error (\(error?.localizedDescription ?? "ERROR!!")")
+            }
         }
         self.viewContext.automaticallyMergesChangesFromParent = true
     }
