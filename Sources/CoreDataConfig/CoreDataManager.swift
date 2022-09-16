@@ -10,12 +10,11 @@ import CoreData
 public class CoreDataManager: NSPersistentContainer {
     public static let shared = CoreDataManager()
     public init() {
-        let objectModelURL1 = Bundle.main.url(forResource: "CoreDataConfig", withExtension: "xcdatamodeld")
-        print(objectModelURL1)
-  
-        
-        guard let objectModelURL = Bundle.main.url(forResource: "CoreDataConfig", withExtension: "xcdatamodeld"),
-              let objectModel = NSManagedObjectModel(contentsOf: objectModelURL) else {
+        let bundle = Bundle.module
+        guard let objectModelURL = bundle.url(forResource: "CoreDataConfig", withExtension: ".momd") else {
+            fatalError("Failed to get the object model url")
+        }
+        guard let objectModel = NSManagedObjectModel(contentsOf: objectModelURL) else {
             fatalError("Failed to retrivew the object model")
         }
         super.init(name: "CoreDataConfig", managedObjectModel: objectModel)
